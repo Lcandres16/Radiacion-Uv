@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Card from './Card'; // Importar el componente de tarjeta
-import './App.css';
 
 const App: React.FC = () => {
   const [uvValue, setUvValue] = useState<number | undefined>(undefined);
@@ -29,9 +28,40 @@ const App: React.FC = () => {
   }, []); // Ejecutar solo una vez al montar el componente
 
   return (
-    <div className="container">
-      <h1>Datos Enviados</h1>
-      <Card uvValue={uvValue} loading={loading} /> {/* Usar el componente de tarjeta */}
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '100vh' }}>
+      <h1 style={{ marginBottom: '20px' }}>Datos Enviados</h1>
+      <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
+        <Card uvValue={uvValue} loading={loading} /> {/* Usar el componente de tarjeta */}
+      </div>
+      <style>{`
+        .card {
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          padding: 10px;
+          margin: 10px;
+          cursor: pointer;
+          transition: transform 0.2s;
+        }
+
+        .card:hover {
+          transform: scale(1.05);
+        }
+
+        .recommendation {
+          margin-top: 20px;
+        }
+
+        p {
+          text-align: center;
+          margin: 10px 0;
+          line-height: 1.5;
+        }
+
+        p:nth-child(odd) {
+          display: block;
+          clear: both;
+        }
+      `}</style>
     </div>
   );
 }
